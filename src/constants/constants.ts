@@ -1,0 +1,5 @@
+export const ENV_VARIABLES = {
+    JWT_SECRET: 'JWT_SECRET',
+    MONGO_DB_URI: 'MONGO_DB_URI',
+    PORT: 'PORT'
+}

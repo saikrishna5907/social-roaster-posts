@@ -1,14 +1,9 @@
 import { Directive, Field, ObjectType } from "@nestjs/graphql";
 
-import { Prop, Schema } from '@nestjs/mongoose'
+import { Prop } from '@nestjs/mongoose'
 import { Model, Types } from "mongoose"
 
-@ObjectType({ description: 'Base model for typegoose' })
-@Schema({
-    timestamps: true, //TODO applying schema options to base class not working
-    // toJSON: { virtuals: true, getters: true, },
-    // toObject: { virtuals: true, getters: true, },
-})
+@ObjectType({ description: 'Base model for typegoose', isAbstract: true })
 @Directive('@key(fields: "_id")')
 export class Base {
     @Field(() => String)

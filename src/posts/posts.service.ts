@@ -1,11 +1,18 @@
+import { BaseService } from './../common/base-classes/base/base.service';
 import { Injectable } from '@nestjs/common';
-import { CreatePostInput } from './dto/create-post.input';
-import { UpdatePostInput } from './dto/update-post.input';
+import { Model, Types } from 'mongoose';
+import { Post, PostDocument } from './entities/post.entity';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
-export class PostsService {
-  create(createPostInput: CreatePostInput) {
-    return 'This action adds a new post';
+export class PostsService extends BaseService<Post> {
+  remove(id: number) {
+    throw new Error('Method not implemented.');
+  }
+
+  public constructor(
+    @InjectModel(Post.name) private readonly postModel: Model<PostDocument>) {
+    super(postModel)
   }
 
   findAll() {
@@ -16,11 +23,11 @@ export class PostsService {
     return `This action returns a #${id} post`;
   }
 
-  update(id: number, updatePostInput: UpdatePostInput) {
-    return `This action updates a #${id} post`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} post`;
+  public async getPostByUserId(_id: Types.ObjectId): Promise<Post[]> {
+    const posts = await this.postModel.find({ 'owner._id': _id })
+    if (!posts) {
+      return [] as Post[]
+    }
+    return posts
   }
 }
