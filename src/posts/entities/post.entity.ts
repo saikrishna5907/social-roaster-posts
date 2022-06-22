@@ -3,7 +3,7 @@ import { Base } from './../../common/base-classes/base/base.entity';
 import { ObjectType as ObjectType, Field as GqlField } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Model, Types, ValidatorProps } from 'mongoose';
-// import { User } from '../../external-entities/user/user.entity'
+import { User } from '../../external-entities/user/user.entity'
 @Schema({
   timestamps: true,
   toJSON: { virtuals: true, getters: true, },
@@ -42,10 +42,10 @@ export class Post extends Base {
   //   type: [{ type: Types.ObjectId, ref: User.name }],
   //   required: true,
   // })
-  // @GqlField(() => User)
-  // owner: User
+  @GqlField(() => User)
+  owner: User
 
-  @GqlField((type) => String)
+  @GqlField(() => String)
   @Prop({
     type: Types.ObjectId,
     required: true

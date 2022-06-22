@@ -1,4 +1,4 @@
-// import { User } from './../external-entities/user/user.entity';
+import { User } from './../external-entities/user/user.entity';
 import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
 import { PostsService } from './posts.service';
 import { Post } from './entities/post.entity';
@@ -34,8 +34,8 @@ export class PostsResolver {
     return this.postsService.remove(id);
   }
 
-  // @ResolveField(() => User)
-  // owner(@Parent() post: Post): any {
-  //   return { __typename: 'User', _id: post.ownerId }
-  // }
+  @ResolveField(() => User)
+  owner(@Parent() post: Post): any {
+    return { __typename: 'User', _id: post.ownerId }
+  }
 }

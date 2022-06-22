@@ -12,7 +12,7 @@ export class UsersResolver {
         return 'hello'
     }
 
-    @ResolveField(() => [Post])
+    @ResolveField('posts', () => [Post])
     async posts(@Parent() user: User): Promise<Post[]> {
         return await this.postsService.getPostByUserId(user._id);
     }

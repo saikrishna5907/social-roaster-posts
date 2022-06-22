@@ -30,9 +30,10 @@ import { User } from './external-entities/user/user.entity';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
-      // buildSchemaOptions: {
-      //   orphanedTypes: [User]
-      // },
+      buildSchemaOptions: {
+        orphanedTypes: [User]
+      },
+
       // debug: false, // to disable stacktrace in errors
       formatError: (error: GraphQLError) => {
         return formatGqlError(error)

@@ -3,7 +3,7 @@ import { Directive, Field, ObjectType } from "@nestjs/graphql";
 import { Prop } from '@nestjs/mongoose'
 import { Model, Types } from "mongoose"
 
-@ObjectType({ description: 'Base model for typegoose', isAbstract: true })
+@ObjectType({ description: 'Base model for mongoose', isAbstract: true })
 @Directive('@key(fields: "_id")')
 export class Base {
     @Field(() => String)

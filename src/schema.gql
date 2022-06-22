@@ -22,12 +22,18 @@ directive @inaccessible on FIELD_DEFINITION | OBJECT | INTERFACE | UNION | ARGUM
 
 directive @override(from: String!) on FIELD_DEFINITION
 
+type User {
+  _id: ID!
+  posts: [Post!]
+}
+
 type Post {
   _id: String!
   createdAt: DateTime!
   updatedAt: DateTime!
   message: String!
   images: [String!]!
+  owner: User!
   ownerId: String!
 }
 
@@ -39,6 +45,7 @@ scalar DateTime
 type Query {
   posts: [Post!]!
   post(id: String!): Post!
+  hello1: String!
 }
 
 type Mutation {
